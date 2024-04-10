@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>First_Windows_Form_C_</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Core" Version="1.38.0" />
+    <PackageReference Include="Azure.Identity" Version="1.11.0" />
+    <PackageReference Include="Azure.Maps.Geolocation" Version="1.0.0-beta.2" />
+    <PackageReference Include="Azure.Maps.Rendering" Version="1.0.0-beta.2" />
+    <PackageReference Include="Azure.Maps.Routing" Version="1.0.0-beta.2" />
+    <PackageReference Include="Azure.Maps.Search" Version="1.0.0-beta.4" />
+    <PackageReference Include="AzureMapsRestToolkit" Version="7.1.0" />
+    <PackageReference Include="dotenv.net" Version="3.1.3" />
+    <PackageReference Include="DotNetEnv" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.5" />
+    <PackageReference Include="NationalWeatherServiceAPIClientLibrary" Version="1.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="stuff.env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(ProjectDir)weather-icons&quot; &quot;$(TargetDir)weather-icons&quot; /s /y /i&#xA;" />
+  </Target>
+
+</Project>
